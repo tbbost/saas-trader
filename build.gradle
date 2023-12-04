@@ -1,0 +1,20 @@
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.13.6'
+    id 'application'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        maven { url "https://repo.spring.io/plugins-release" }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+group = "io.saas"
+project.version = scmVersion.version
+
+evaluationDependsOnChildren()

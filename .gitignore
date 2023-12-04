@@ -1,0 +1,22 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+.gradletasknamecache
+
+# Ignore Gradle build output directory
+.idea
+/build
+/**/build
+app/src/main/resources/static
+
+# Ignore build artifacts, which are not a part of the codebase
+app/src/main/resources/public/css/*
+/gradle/wrapper/gradle-wrapper.jar
+
+# frontend
+/frontend/.gradle
+/frontend/src/dist
+/frontend/src/tmp
+/frontend/src/out-tsc
+/frontend/src/node_modules
+/frontend/src/coverage
+/frontend/src/.angular

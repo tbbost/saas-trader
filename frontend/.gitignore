@@ -1,0 +1,27 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+src/dist
+src/tmp
+src/out-tsc
+
+# dependencies
+src/node_modules
+
+# profiling files
+src/chrome-profiler-events.json
+src/speed-measure-plugin.json
+
+# misc
+src/.sass-cache
+src/connect.lock
+src/coverage
+src/libpeerconnection.log
+src/npm-debug.log
+src/yarn-error.log
+src/testem.log
+src/typings
+
+# System Files
+src/.DS_Store
+src/Thumbs.db

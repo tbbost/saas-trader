@@ -1,0 +1,50 @@
+plugins {
+  id "com.github.node-gradle.node" version "3.3.0"
+}
+
+node {
+  version = "17.0.1"
+  nodeProjectDir = file("src")
+  download = true
+}
+
+task buildFrontendApp(type: NpxTask) {
+  description "Build Angular 13.2.2 application"
+  dependsOn npmInstall
+  command = 'ng'
+  args = ['build', '--configuration=production', '--outputPath=../build/dist', '--progress=true', '--extractLicenses=true']
+  inputs.dir('src')
+  inputs.files(
+    'src/package.json',
+    'src/package-lock.json',
+    'src/angular.json',
+    'src/tsconfig.json',
+    'src/tsconfig.app.json'
+  )
+//  inputs.dir(fileTree("src/node_modules").exclude(".cache"))
+  outputs.dir('build/dist')
+}
+
+configurations {
+  npmResources
+}
+
+clean {
+  delete 'node_modules', 'dist', 'coverage'
+}
+
+task copyBuildArtifacts(type: Copy) {
+  into "app/src/main/resources/static"
+  from  "./frontend/build/dist"
+  dependsOn buildFrontendApp
+}
+
+//task generateAngularApp(type: NpxTask) {
+//  command = '@angular/cli'
+//  args = ['new', 'App']
+//}
+
+build.dependsOn buildFrontendApp
+// karma is not finishing in the browser. Please run tests in development environment manually,
+// or fix it if U know how ;)
+//check.dependsOn 'npm_run_test'
